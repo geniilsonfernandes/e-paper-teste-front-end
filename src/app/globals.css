@@ -70,8 +70,18 @@ body {
     @apply bg-background text-foreground;
   }
 
-  .c-header {
+}
+
+@layer utilities {
+   .app--header {
     @apply min-h-[72px]  border-b border-neutral-200  px-2 sm:px-4 flex justify-between items-center w-full;
+  }
+
+  .app-sidebar {
+    @apply min-h-[calc(100vh-72px)] border-r border-neutral-200;
+  }
+  .app-content {
+    @apply min-h-[calc(100vh-72px)] ml-0 sm:ml-16 transition-all duration-300 ease-in-out  w-full px-2 sm:px-4 bg-[#F1F1F1];
   }
 
   .center {
@@ -85,7 +95,6 @@ body {
   .menu-icon-rotate {
     @apply animate-fade-down animate-once
   }
-
 }
 
 /* #E5E7EB */
