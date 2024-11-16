@@ -71,11 +71,19 @@ body {
   }
 
   .c-header {
-    @apply h-[72px] border-b border-neutral-200;
+    @apply min-h-[72px]  border-b border-neutral-200 px-4 flex justify-between items-center w-full;
   }
 
   .center {
-    @apply flex items-center justify-center;
+    @apply flex items-center justify-center ;
+  }
+
+  .user-focus {
+    @apply focus:outline focus:outline-2 focus:outline-black
+  }
+
+  .menu-icon-rotate {
+    @apply animate-fade-down animate-once
   }
 
 }

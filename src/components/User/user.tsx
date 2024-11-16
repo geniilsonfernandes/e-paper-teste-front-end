@@ -5,7 +5,7 @@ import { IconButton } from "../IconButton";
 export const User = () => {
   return (
     <div
-      className="border border-neutral-200 hover:bg-neutral-100 inline-flex items-center rounded-md gap-2 p-2 focus:outline focus:outline-2 focus:outline-black"
+      className="border border-neutral-200 hover:bg-neutral-100 inline-flex items-center rounded-md gap-2 p-2"
       aria-label="Abrir menu do usuário"
       aria-expanded="false"
       aria-controls="user-menu"
