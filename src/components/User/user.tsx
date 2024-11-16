@@ -1,9 +1,10 @@
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { IconButton } from "../IconButton";
 
 export const User = () => {
   return (
-    <button
+    <div
       className="border border-neutral-200 hover:bg-neutral-100 inline-flex items-center rounded-md gap-2 p-2 focus:outline focus:outline-2 focus:outline-black"
       aria-label="Abrir menu do usuário"
       aria-expanded="false"
@@ -24,9 +25,9 @@ export const User = () => {
           Organização
         </span>
       </div>
-      <span className="w-8 h-8 center" aria-hidden="true">
-        <ChevronDown size={16} />
-      </span>
-    </button>
+      <IconButton aria-hidden="true" size={"small"}>
+        <ChevronDown size={18} />
+      </IconButton>
+    </div>
   );
 };

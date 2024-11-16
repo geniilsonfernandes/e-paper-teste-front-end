@@ -1,7 +1,12 @@
-type NotificationProps = {
-  name: string;
-};
+import { Bell } from "lucide-react";
+import { IconButton, IconButtonProps } from "../IconButton";
 
-export const Notification = ({ name }: NotificationProps) => {
-  return <div>{name}</div>;
+type NotificationProps = {} & IconButtonProps;
+
+export const Notification = (props: NotificationProps) => {
+  return (
+    <IconButton aria-hidden="true" {...props}>
+      <Bell size={20} />
+    </IconButton>
+  );
 };

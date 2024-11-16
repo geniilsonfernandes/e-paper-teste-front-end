@@ -1,3 +1,4 @@
+import { Notification } from "@/components/Notification";
 import { User } from "@/components/User";
 import React from "react";
 
@@ -6,8 +7,14 @@ import React from "react";
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="h-screen">
-      <div className="w-full c-header boder" aria-label="Sidebar">
-        <User />
+      <div
+        className="w-full c-header flex items-center justify-between"
+        aria-label="Sidebar"
+      >
+        <div className="flex items-center gap-8">
+          <Notification className="hidden sm:flex" />
+          <User />
+        </div>
       </div>
       <div>sidebar</div>
 
