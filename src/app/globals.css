@@ -69,4 +69,15 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+
+  .c-header {
+    @apply h-[72px] border-b border-neutral-200;
+  }
+
+  .center {
+    @apply flex items-center justify-center;
+  }
+
 }
+
+/* #E5E7EB */
