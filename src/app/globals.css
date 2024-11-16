@@ -71,7 +71,7 @@ body {
   }
 
   .c-header {
-    @apply min-h-[72px]  border-b border-neutral-200 px-4 flex justify-between items-center w-full;
+    @apply min-h-[72px]  border-b border-neutral-200  px-2 sm:px-4 flex justify-between items-center w-full;
   }
 
   .center {

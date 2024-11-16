@@ -1,4 +1,4 @@
-import { Menu } from "@/components/Menu";
+import { Header } from "@/components/Header";
 import { Notification } from "@/components/Notification";
 import { User } from "@/components/User";
 import React from "react";
@@ -9,7 +9,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="h-screen">
       <div className="c-header" aria-label="Sidebar">
-        <Menu name="Soluções" />
+        <Header />
         <div className="flex items-center gap-8">
           <Notification className="hidden sm:flex" />
           <User />
