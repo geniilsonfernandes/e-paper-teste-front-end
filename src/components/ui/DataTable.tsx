@@ -18,6 +18,14 @@ type DataTableProps<TData> = {
 };
 
 export const DataTable = ({ table }: DataTableProps<any>) => {
+
+  if (table === undefined) {
+    return (
+      <div className="flex items-center justify-center text-sm text-muted-foreground">
+        No results.
+      </div>
+    );
+  }
   return (
     <div className="w-full">
       {/* <div className="flex items-center py-4">
@@ -77,7 +85,7 @@ export const DataTable = ({ table }: DataTableProps<any>) => {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table?.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -131,7 +139,7 @@ export const DataTable = ({ table }: DataTableProps<any>) => {
           ${table.getFilteredRowModel().rows.length}
           `}
         </div>
-        <div className="space-x-2">
+        <div className="space-x-2 flex">
           <Button
             variant="outline"
             size="sm"

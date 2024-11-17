@@ -90,7 +90,7 @@ body {
   }
 
   .user-focus {
-    @apply focus:outline focus:outline-2 focus:outline-black
+    @apply focus:outline focus:outline-2 focus:outline-primary-200 focus:outline-offset-2;
   }
 
   .menu-icon-rotate {

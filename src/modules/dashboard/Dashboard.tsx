@@ -2,29 +2,11 @@
 
 import { DataTableDocuments } from "@/components/DataTable";
 import PageHeader from "@/components/PageHeader/PageHeader";
-import { Button } from "@/components/ui/button";
+import { Button, LeadingIcon } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/Combobox";
 import { Input } from "@/components/ui/input";
-import { Document } from "@/shared/types";
-import { Plus } from "lucide-react";
-
-export type Payment = {
-  id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
-};
-
-const data: Document[] = Array.from({ length: 100 }, (_, index) => ({
-  id: (index + 1).toString(),
-  code: "123456" + (index + 1),
-  documentName: "Document Name" + (index + 1),
-  emitter: "Emitter Name",
-  amount: 500,
-  liquidValue: 100,
-  createdAt: "2023-01-01",
-  updatedAt: "2023-01-01",
-}));
+import { documentsMock } from "@/shared/tests/mocks";
+import { Filter, Plus, Search } from "lucide-react";
 
 const doctypes = [
   { value: "payment", label: "Nota de pagamento" },
@@ -47,7 +29,7 @@ export const Dashboard = () => {
   };
 
   return (
-    <div className="py-4 ">
+    <div className="py-4">
       <PageHeader
         title="Dashboard"
         subtitle="Visualize e gerencie seus documentos"
@@ -56,8 +38,12 @@ export const Dashboard = () => {
             <Input
               placeholder="Buscar documentos"
               className="w-full md:max-w-[330px]"
+              icon={<Search />}
             />
             <Button variant="outline" className="sm:px-8">
+              <LeadingIcon>
+                <Filter className="mr-2" />
+              </LeadingIcon>
               Filtrar
             </Button>
           </div>
@@ -80,11 +66,14 @@ export const Dashboard = () => {
             onSelect={handleSelect}
           />
         </div>
-        <Button variant="default" className="hidden md:block">
+        <Button variant="default" className="hidden md:flex">
+          <LeadingIcon>
+            <Plus className="mr-2" />
+          </LeadingIcon>
           Novo documento
         </Button>
       </div>
-      <DataTableDocuments data={data} />
+      <DataTableDocuments data={documentsMock} />
       <Button className="md:hidden fixed bottom-4 right-4 w-14 h-14 rounded-full">
         <Plus />
       </Button>

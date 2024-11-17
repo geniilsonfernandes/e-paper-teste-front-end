@@ -28,7 +28,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Document } from "@/shared/types";
-import { calculateTotal, filtersEmitters } from "@/shared/utils";
+import { calculateTotal, filtersEmitters, formatValue } from "@/shared/utils";
 import { useMemo, useState } from "react";
 import { DataTable } from "../ui/DataTable";
 
@@ -146,6 +146,13 @@ export const DataTableDocuments = ({ data }: DataTableDocumentsProps) => {
           </div>
         ),
         accessorKey: "amount",
+        cell: ({ row }) => {
+          return (
+            <div className="font-medium flex items-center">
+              <span>{formatValue(row.getValue("amount"))}</span>
+            </div>
+          );
+        },
         header: ({ column }) => {
           return (
             <Button
@@ -164,6 +171,13 @@ export const DataTableDocuments = ({ data }: DataTableDocumentsProps) => {
 
       {
         accessorKey: "liquidValue",
+        cell: ({ row }) => {
+          return (
+            <div className="font-medium flex items-center">
+              <span>{formatValue(row.getValue("liquidValue"))}</span>
+            </div>
+          );
+        },
         footer: () => (
           <div className="flex flex-col ">
             <span className="text-neutral-400 text-xs">

@@ -9,6 +9,17 @@ export const filtersEmitters = (documents: Document[]) => {
   }, [] as string[]);
 };
 
+
+export const formatValue = (value?: number) => {
+  if (!value) {
+    return "0,00";
+  }
+  return value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+};
+
 export const calculateTotal = (
   documents: Document[],
   key: "amount" | "liquidValue"
@@ -30,9 +41,6 @@ export const calculateTotal = (
 
   return {
     raw: total,
-    formatted: total.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }),
+    formatted: formatValue(total),
   };
 };
