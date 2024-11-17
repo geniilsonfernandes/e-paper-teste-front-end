@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Roboto, Helvetica, sans-serif;
 }
 
 @layer base {
@@ -78,11 +78,15 @@ body {
   }
 
   .app-sidebar {
-    @apply min-h-[calc(100vh-72px)] border-r border-neutral-200;
+    @apply h-[100%] bg-white border-r border-neutral-200 absolute z-50;
   }
   
   .app-content {
-    @apply  min-h-[calc(100vh-72px)] transition-all duration-300 ease-in-out pl-4 sm:pl-[72px] pr-4 w-full bg-[#FFF];
+    @apply transition-all duration-300 ease-in-out pl-4 sm:pl-[80px] pr-4 w-full pb-10;
+  }
+
+  .app-footer {
+    @apply absolute bottom-0 h-14 bg-neutral-100 flex items-center justify-center w-full;
   }
 
   .center {

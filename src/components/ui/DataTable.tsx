@@ -132,17 +132,21 @@ export const DataTable = ({ table }: DataTableProps<any>) => {
           </TableFooter>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="text-sm text-muted-foreground">
+      <div
+        className="flex items-center 
+      md:justify-end gap-2 py-4"
+      >
+        <div className="whitespace-nowrap hidden md:flex text-sm text-muted-foreground">
           {`${table.getFilteredSelectedRowModel().rows.length}
           de
           ${table.getFilteredRowModel().rows.length}
           `}
         </div>
-        <div className="space-x-2 flex">
+        <div className="flex gap-2 w-full md:w-[200px]">
           <Button
             variant="outline"
-            size="sm"
+            size="default"
+            className="flex-1 sm:inline-flex"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
@@ -150,7 +154,8 @@ export const DataTable = ({ table }: DataTableProps<any>) => {
           </Button>
           <Button
             variant="outline"
-            size="sm"
+            size="default"
+            className="flex-1 sm:inline-flex"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >

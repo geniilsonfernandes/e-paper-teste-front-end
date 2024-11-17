@@ -74,7 +74,7 @@ export const Dashboard = () => {
         </Button>
       </div>
       <DataTableDocuments data={documentsMock} />
-      <Button className="md:hidden fixed bottom-4 right-4 w-14 h-14 rounded-full">
+      <Button className="md:hidden fixed bottom-48 right-8 w-14 h-14 rounded-full">
         <Plus />
       </Button>
     </div>

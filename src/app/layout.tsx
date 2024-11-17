@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Roboto } from "next/font/google"; // Importando fonte do Google
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -11,6 +12,20 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+
+// Configuração da fonte Roboto com todos os pesos
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: [
+    "100",
+    "300",
+    "400",
+    "500",
+    "700",
+    "900", // Todos os pesos padrão
+  ],
+  variable: "--font-roboto", // Definindo variável CSS
 });
 
 export const metadata: Metadata = {
@@ -26,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
       >
         {children}
       </body>

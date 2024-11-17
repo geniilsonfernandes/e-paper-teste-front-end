@@ -11,6 +11,7 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {},
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -21,6 +22,20 @@ export default {
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
+        },
+        netural: {
+          DEFAULT: "hsl(var(--netural))",
+          foreground: "hsl(var(--netural-foreground))",
+          50: "#F9FAFB",
+          100: "#F3F4F6",
+          200: "#E5E7EB",
+          300: "#D1D5DB",
+          400: "#9CA3AF",
+          500: "#6B7280",
+          600: "#4D5561",
+          700: "#3A424E",
+          800: "#202936",
+          900: "#191E29",
         },
         primary: {
           DEFAULT: "#05C151",
