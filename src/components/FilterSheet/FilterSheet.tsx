@@ -1,10 +1,12 @@
 import { doctypes } from "@/shared/contants/comboxes";
 import { Filter, Info } from "lucide-react";
+import { toast } from "sonner";
 import InputField, { NumericField } from "../InputField/InputField";
 import { Alert, AlertDescription } from "../ui/alert";
 import { Button, LeadingIcon } from "../ui/button";
 import { Combobox } from "../ui/Combobox";
 import { DatePicker } from "../ui/DatePicker";
+
 import {
   Sheet,
   SheetContent,
@@ -20,6 +22,9 @@ type FilterSheetProps = {
 };
 
 export const FilterSheet = ({ name }: FilterSheetProps) => {
+  const aplyFilters = () => {
+    toast.success("Filtros aplicados com sucesso");
+  };
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -73,7 +78,7 @@ export const FilterSheet = ({ name }: FilterSheetProps) => {
         </div>
         <SheetFooter className="border-t border-neutral-200 py-4">
           <Button variant="outline">Limpar filtros</Button>
-          <Button>Aplicar filtro</Button>
+          <Button onClick={aplyFilters}>Aplicar filtro</Button>
         </SheetFooter>
       </SheetContent>
     </Sheet>

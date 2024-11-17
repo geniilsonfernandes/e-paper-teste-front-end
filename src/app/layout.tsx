@@ -1,5 +1,6 @@
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google"; // Importando fonte do Google
+import { Roboto } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -14,18 +15,10 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// Configuração da fonte Roboto com todos os pesos
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: [
-    "100",
-    "300",
-    "400",
-    "500",
-    "700",
-    "900", // Todos os pesos padrão
-  ],
-  variable: "--font-roboto", // Definindo variável CSS
+  weight: ["100", "300", "400", "500", "700", "900"],
+  variable: "--font-roboto",
 });
 
 export const metadata: Metadata = {
@@ -44,6 +37,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );
