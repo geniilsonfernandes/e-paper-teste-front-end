@@ -12,7 +12,7 @@ import {
 } from "../ui/tooltip";
 
 const SidebarVariants = cva(
-  "app-sidebar absolute py-2 px-2 bg-white left-0 shadow-md  duration-300 ease-in-out",
+  "py-2 px-2 bg-white left-0 shadow-md  duration-300 ease-in-out",
   {
     variants: {
       opened: {

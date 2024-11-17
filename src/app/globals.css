@@ -82,7 +82,7 @@ body {
   }
   
   .app-content {
-    @apply min-h-[calc(100vh-72px)] ml-0 sm:ml-16 transition-all duration-300 ease-in-out  w-full px-2 sm:px-4 bg-[#FFF];
+    @apply  min-h-[calc(100vh-72px)] transition-all duration-300 ease-in-out pl-4 sm:pl-[72px] pr-4 w-full bg-[#FFF];
   }
 
   .center {
