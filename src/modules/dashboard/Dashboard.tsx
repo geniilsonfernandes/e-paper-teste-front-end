@@ -1,27 +1,14 @@
 "use client";
 
 import { DataTableDocuments } from "@/components/DataTable";
+import { FilterSheet } from "@/components/FilterSheet";
 import PageHeader from "@/components/PageHeader/PageHeader";
 import { Button, LeadingIcon } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/Combobox";
 import { Input } from "@/components/ui/input";
+import { docOrigin, doctypes } from "@/shared/contants/comboxes";
 import { documentsMock } from "@/shared/tests/mocks";
-import { Filter, Plus, Search } from "lucide-react";
-
-const doctypes = [
-  { value: "payment", label: "Nota de pagamento" },
-  { value: "contract", label: "Contrato de prestação de serviço" },
-  { value: "invoice", label: "Fatura" },
-  { value: "receipt", label: "Recibo" },
-  { value: "statement", label: "Extracto bancário" },
-  { value: "contractService", label: "Contrato de prestação de serviço" },
-];
-
-const docOrigin = [
-  { value: "bank", label: "Banco" },
-  { value: "company", label: "Empresa" },
-  { value: "person", label: "Pessoa" },
-];
+import { Plus, Search } from "lucide-react";
 
 export const Dashboard = () => {
   const handleSelect = (value: string) => {
@@ -40,17 +27,12 @@ export const Dashboard = () => {
               className="w-full md:max-w-[330px]"
               icon={<Search />}
             />
-            <Button variant="outline" className="sm:px-8">
-              <LeadingIcon>
-                <Filter className="mr-2" />
-              </LeadingIcon>
-              Filtrar
-            </Button>
+            <FilterSheet />
           </div>
         }
       />
       <div className="border-t border-neutral-200 pt-6 pb-4 flex items-end justify-between">
-        <div className="flex flex-col sm:flex-row gap-4 w-full">
+        <div className="flex flex-col sm:flex-row gap-4 w-full md:max-w-96">
           <Combobox
             options={docOrigin}
             placeholder="escolha uma origem..."
@@ -74,7 +56,7 @@ export const Dashboard = () => {
         </Button>
       </div>
       <DataTableDocuments data={documentsMock} />
-      <Button className="md:hidden fixed bottom-48 right-8 w-14 h-14 rounded-full">
+      <Button className="md:hidden fixed bottom-32 right-8 w-14 h-14 rounded-full">
         <Plus />
       </Button>
     </div>

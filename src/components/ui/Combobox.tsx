@@ -65,7 +65,7 @@ export const Combobox = ({
   };
 
   return (
-    <div className="w-full md:w-[200px]">
+    <div className="w-full relative">
       <div className="mb-1 flex items-center gap-2">
         <span className="text-sm font-bold">{label}</span>
         <TooltipProvider>
@@ -85,7 +85,7 @@ export const Combobox = ({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-full justify-between truncate overflow-hidden text-ellipsis data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
+            className="relative w-full justify-between truncate overflow-hidden text-ellipsis data-[state=open]:bg-accent data-[state=open]:text-accent-foreground"
           >
             {value
               ? addEllipsis(
@@ -95,7 +95,7 @@ export const Combobox = ({
             <ChevronsUpDown className="opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="sm:w-[200px] w-[calc(100vw-32px)] p-0">
+        <PopoverContent className="p-0">
           <Command>
             <CommandInput placeholder={`Procurar...`} className="h-9" />
             <CommandList>
