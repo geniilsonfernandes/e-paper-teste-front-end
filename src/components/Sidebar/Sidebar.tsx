@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { useSidebarStore } from "@/shared/store";
 import { cva } from "class-variance-authority";
 import { FileText } from "lucide-react";
@@ -11,7 +12,7 @@ import {
 } from "../ui/tooltip";
 
 const SidebarVariants = cva(
-  "app-sidebar absolute p-4 bg-white left-0 shadow-md transition-all duration-300 ease-in-out",
+  "app-sidebar absolute py-2 px-2 bg-white left-0 shadow-md  duration-300 ease-in-out",
   {
     variants: {
       opened: {
@@ -34,8 +35,15 @@ const Option = ({ opened, children }: OptionProps) => {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="w-full user-focus flex items-center bg-primary-100 p-2 rounded-sm">
-          <FileText size={16} />
+        <button
+          className={cn(
+            "w-full relative user-focus flex items-center min-h-[40px] bg-primary-100 p-2  rounded-sm",
+            {
+              "justify-center": !opened,
+            }
+          )}
+        >
+          <FileText size={18} className="" />
           {opened && <span className="ml-2 text-sm">{children}</span>}
         </button>
       </TooltipTrigger>
