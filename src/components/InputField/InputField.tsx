@@ -21,7 +21,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
   }
 );
 export const NumericField = forwardRef<HTMLInputElement, InputFieldProps>(
-  ({ label, name, ...rest }, ref) => {
+  ({ label, name, ...rest }) => {
     return (
       <div>
         <label htmlFor={name} className="text-sm font-bold">
@@ -42,5 +42,6 @@ export const NumericField = forwardRef<HTMLInputElement, InputFieldProps>(
 );
 
 InputField.displayName = "InputField";
+NumericField.displayName = "NumericField";
 
 export default InputField;

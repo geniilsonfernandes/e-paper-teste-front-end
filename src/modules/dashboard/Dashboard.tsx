@@ -1,5 +1,6 @@
 "use client";
 
+import { CreateDocumentDialog } from "@/components/CreateDocumentDialog";
 import { DataTableDocuments } from "@/components/DataTable";
 import { FilterSheet } from "@/components/FilterSheet";
 import PageHeader from "@/components/PageHeader/PageHeader";
@@ -48,17 +49,21 @@ export const Dashboard = () => {
             onSelect={handleSelect}
           />
         </div>
-        <Button variant="default" className="hidden md:flex">
-          <LeadingIcon>
-            <Plus className="mr-2" />
-          </LeadingIcon>
-          Novo documento
-        </Button>
+        <CreateDocumentDialog>
+          <Button variant="default" className="hidden md:flex">
+            <LeadingIcon>
+              <Plus className="mr-2" />
+            </LeadingIcon>
+            Novo documento
+          </Button>
+        </CreateDocumentDialog>
       </div>
       <DataTableDocuments data={documentsMock} />
-      <Button className="md:hidden fixed bottom-32 right-8 w-14 h-14 rounded-full">
-        <Plus />
-      </Button>
+      <CreateDocumentDialog>
+        <Button className="md:hidden fixed bottom-32 right-8 w-14 h-14 rounded-full">
+          <Plus />
+        </Button>
+      </CreateDocumentDialog>
     </div>
   );
 };

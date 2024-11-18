@@ -17,7 +17,7 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-primary underline-offset-4 hover:underline font-normal",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -59,7 +59,15 @@ export const LeadingIcon = React.forwardRef<
   <Slot ref={ref} className={cn("pointer-events-none", className)} {...props} />
 ));
 
+export const TrailingIcon = React.forwardRef<
+  React.ElementRef<typeof Slot>,
+  React.ComponentPropsWithoutRef<typeof Slot>
+>(({ className, ...props }, ref) => (
+  <Slot ref={ref} className={cn("pointer-events-none", className)} {...props} />
+));
+
 Button.displayName = "Button";
 LeadingIcon.displayName = "LeadingIcon";
+TrailingIcon.displayName = "TrailingIcon";
 
 export { Button, buttonVariants };

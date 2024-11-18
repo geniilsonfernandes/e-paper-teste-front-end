@@ -8,6 +8,8 @@ export const doctypes = [
 ];
 
 export const docOrigin = [
+  { value: "digital", label: "Digitalizado" },
+  { value: "electronic", label: "Eletrônico" },
   { value: "bank", label: "Banco" },
   { value: "company", label: "Empresa" },
   { value: "person", label: "Pessoa" },
