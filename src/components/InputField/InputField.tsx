@@ -34,6 +34,7 @@ export const NumericField = ({ label, name, ...rest }: InputFieldProps) => {
         name={name}
         placeholder={rest.placeholder}
         prefix="R$ "
+        {...rest}
       />
     </div>
   );
