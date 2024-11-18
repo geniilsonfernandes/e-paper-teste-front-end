@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Roboto, Helvetica, sans-serif;
 }
 
 @layer base {
@@ -69,4 +69,37 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+
 }
+
+@layer utilities {
+   .app--header {
+    @apply min-h-[72px]  border-b border-neutral-200  px-2 sm:px-4 flex justify-between items-center w-full;
+  }
+
+  .app-sidebar {
+    @apply h-[100%] bg-white border-r border-neutral-200 absolute z-50;
+  }
+  
+  .app-content {
+    @apply transition-all duration-300 ease-in-out pl-4 sm:pl-[80px] pr-4 w-full pb-10;
+  }
+
+  .app-footer {
+    @apply absolute bottom-0 h-14 bg-neutral-100 flex items-center justify-center w-full;
+  }
+
+  .center {
+    @apply flex items-center justify-center ;
+  }
+
+  .user-focus {
+    @apply focus:outline focus:outline-2 focus:outline-primary-200 focus:outline-offset-2;
+  }
+
+  .menu-icon-rotate {
+    @apply animate-fade-down animate-once
+  }
+}
+
+/* #E5E7EB */
