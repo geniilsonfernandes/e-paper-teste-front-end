@@ -1,4 +1,6 @@
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -11,6 +13,12 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+  variable: "--font-roboto",
 });
 
 export const metadata: Metadata = {
@@ -26,9 +34,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );
