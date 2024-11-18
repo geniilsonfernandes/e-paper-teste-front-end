@@ -16,6 +16,7 @@ export const User = () => {
         width={40}
         height={40}
         alt="Avatar do usuário"
+        title="Avatar do usuário"
       />
       <div className="hidden sm:flex flex-col items-start">
         <h1 className="text-sm text-neutral-700" role="text">
