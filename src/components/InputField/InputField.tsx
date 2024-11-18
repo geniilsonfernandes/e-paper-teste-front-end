@@ -20,26 +20,24 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     );
   }
 );
-export const NumericField = forwardRef<HTMLInputElement, InputFieldProps>(
-  ({ label, name, ...rest }) => {
-    return (
-      <div>
-        <label htmlFor={name} className="text-sm font-bold">
-          {label}
-        </label>
-        <NumericFormat
-          decimalSeparator=","
-          decimalScale={2}
-          customInput={Input}
-          id={name}
-          name={name}
-          placeholder={rest.placeholder}
-          prefix="R$ "
-        />
-      </div>
-    );
-  }
-);
+export const NumericField = ({ label, name, ...rest }: InputFieldProps) => {
+  return (
+    <div>
+      <label htmlFor={name} className="text-sm font-bold">
+        {label}
+      </label>
+      <NumericFormat
+        decimalSeparator=","
+        decimalScale={2}
+        customInput={Input}
+        id={name}
+        name={name}
+        placeholder={rest.placeholder}
+        prefix="R$ "
+      />
+    </div>
+  );
+};
 
 InputField.displayName = "InputField";
 NumericField.displayName = "NumericField";

@@ -11,6 +11,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { format } from "date-fns";
 import {
   ChevronsUpDown,
   FileText,
@@ -206,6 +207,13 @@ export const DataTableDocuments = ({ data }: DataTableDocumentsProps) => {
 
       {
         accessorKey: "createdAt",
+        cell: ({ row }) => {
+          return (
+            <div className="font-medium flex items-center">
+              <span>{format(row.getValue("createdAt"), "dd/MM/yyyy")}</span>
+            </div>
+          );
+        },
         header: ({ column }) => {
           return (
             <Button
@@ -224,6 +232,13 @@ export const DataTableDocuments = ({ data }: DataTableDocumentsProps) => {
 
       {
         accessorKey: "updatedAt",
+        cell: ({ row }) => {
+          return (
+            <div className="font-medium flex items-center">
+              <span>{format(row.getValue("updatedAt"), "dd/MM/yyyy")}</span>
+            </div>
+          );
+        },
         header: ({ column }) => {
           return (
             <Button
