@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h2 align="center">ePaper | Frontend</h2>
 
-## Getting Started
+<p align="center" id="menu">
+  <a href="#sobre-o-projeto">Sobre o projeto</a>
+  <a href="#stacks-utilizadas">Stacks utilizadas</a>
+  <a href="#instalação-e-execução-local">Instalação e execução local</a>
+  <a href="#documentação">Documentação</a>
+</p>
 
-First, run the development server:
+<h2 align="center" id="sobre-o-projeto">Sobre o projeto</h2>
 
-```bash
+<p align="center">
+  Este é um projeto desenvolvido como parte de um teste prático para processo seletivo. O objetivo do projeto foi construir uma aplicação frontend de forma eficiente e seguindo boas práticas de desenvolvimento, com foco na otimização de performance e na aderência ao design proposto.
+</p>
+
+<p align="center">
+  A interface foi construída com base nos padrões definidos no UI Design, garantindo uma experiência consistente e intuitiva para o usuário. Durante o desenvolvimento, busquei aplicar boas práticas de codificação, como a separação de responsabilidades, o uso de componentes reutilizáveis e a utilização eficiente do React para otimização do desempenho da aplicação.
+</p>
+
+<h2 align="center" id="stacks-utilizadas">Stacks utilizadas</h2>
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=git,ts,postgres,react,tailwind,figma" />
+  </a>
+</p>
+
+<h2 id="instalação-e-execução-local" align="center">Instalação e execução local</h2>
+
+<p>
+  Para instalar e executar o aplicativo localmente, siga as instruções abaixo:
+</p>
+
+```
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<p>
+  Após a execução, o aplicativo estará disponível em <a href="http://localhost:3000/">http://localhost:3000/</a>
+</p>
