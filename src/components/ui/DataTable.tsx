@@ -13,12 +13,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-type DataTableProps<TData> = {
-  table: TableType<TData>;
+type DataTableProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  table: TableType<any>;
 };
 
-export const DataTable = ({ table }: DataTableProps<any>) => {
-
+export const DataTable = ({ table }: DataTableProps) => {
   if (table === undefined) {
     return (
       <div className="flex items-center justify-center text-sm text-muted-foreground">

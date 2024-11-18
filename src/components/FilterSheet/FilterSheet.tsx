@@ -17,11 +17,8 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 
-type FilterSheetProps = {
-  name?: string;
-};
 
-export const FilterSheet = ({ name }: FilterSheetProps) => {
+export const FilterSheet = () => {
   const aplyFilters = () => {
     toast.success("Filtros aplicados com sucesso");
   };
