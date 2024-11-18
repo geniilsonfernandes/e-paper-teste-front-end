@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  Também utilizei o **Plop.js** para automatizar a criação de componentes e melhorar a produtividade durante o desenvolvimento. Com o Plop, é possível gerar rapidamente os arquivos necessários de acordo com os padrões do projeto, o que garantiu uma maior consistência e velocidade na criação de novos componentes.
+  Também utilizei o **Plop.js** para automatizar a criação de componentes e melhorar a produtividade durante o desenvolvimento.
 </p>
 
 <h2 align="center" id="stacks-utilizadas">Stacks utilizadas</h2>
