@@ -33,3 +33,12 @@
 <p>
   Para instalar e executar o aplicativo localmente, siga as instruções abaixo:
 </p>
+
+```
+npm i
+npm run dev
+```
+
+<p>
+  Após a execução, o aplicativo estará disponível em <a href="http://localhost:3000/">http://localhost:3000/</a>
+</p>
