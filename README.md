@@ -17,6 +17,10 @@
   A interface foi construída com base nos padrões definidos no UI Design, garantindo uma experiência consistente e intuitiva para o usuário. Durante o desenvolvimento, busquei aplicar boas práticas de codificação, como a separação de responsabilidades, o uso de componentes reutilizáveis e a utilização eficiente do React para otimização do desempenho da aplicação.
 </p>
 
+<p align="center">
+  Também utilizei o **Plop.js** para automatizar a criação de componentes e melhorar a produtividade durante o desenvolvimento. Com o Plop, é possível gerar rapidamente os arquivos necessários de acordo com os padrões do projeto, o que garantiu uma maior consistência e velocidade na criação de novos componentes.
+</p>
+
 <h2 align="center" id="stacks-utilizadas">Stacks utilizadas</h2>
 <p align="center">
   <a href="https://skillicons.dev">
@@ -28,13 +32,4 @@
 
 <p>
   Para instalar e executar o aplicativo localmente, siga as instruções abaixo:
-</p>
-
-```
-npm install
-npm run dev
-```
-
-<p>
-  Após a execução, o aplicativo estará disponível em <a href="http://localhost:3000/">http://localhost:3000/</a>
 </p>
