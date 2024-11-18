@@ -243,7 +243,7 @@ export const DataTableDocuments = ({ data }: DataTableDocumentsProps) => {
       {
         id: "actions",
         enableHiding: false,
-        cell: ({ row }) => {
+        cell: () => {
           return (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
