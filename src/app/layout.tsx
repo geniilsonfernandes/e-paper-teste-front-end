@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/sonner";
+import { Providers } from "@/shared/providers";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import localFont from "next/font/local";
@@ -36,8 +37,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
       >
-        {children}
-        <Toaster />
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

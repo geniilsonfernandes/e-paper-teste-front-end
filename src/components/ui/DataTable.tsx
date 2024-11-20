@@ -16,54 +16,12 @@ import {
 type DataTableProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   table: TableType<any>;
+  isLoading?: boolean;
 };
 
-export const DataTable = ({ table }: DataTableProps) => {
-  if (table === undefined) {
-    return (
-      <div className="flex items-center justify-center text-sm text-muted-foreground">
-        No results.
-      </div>
-    );
-  }
+export const DataTable = ({ table, isLoading }: DataTableProps) => {
   return (
     <div className="w-full">
-      {/* <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div> */}
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -107,7 +65,7 @@ export const DataTable = ({ table }: DataTableProps) => {
                   colSpan={table.getAllColumns().length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  {isLoading ? "Carregando..." : "Nenhum registro encontrado."}
                 </TableCell>
               </TableRow>
             )}
@@ -147,7 +105,9 @@ export const DataTable = ({ table }: DataTableProps) => {
             variant="outline"
             size="default"
             className="flex-1 sm:inline-flex"
-            onClick={() => table.previousPage()}
+            onClick={() => {
+              table.previousPage();
+            }}
             disabled={!table.getCanPreviousPage()}
           >
             Anterior
@@ -156,7 +116,9 @@ export const DataTable = ({ table }: DataTableProps) => {
             variant="outline"
             size="default"
             className="flex-1 sm:inline-flex"
-            onClick={() => table.nextPage()}
+            onClick={() => {
+              table.nextPage();
+            }}
             disabled={!table.getCanNextPage()}
           >
             Próximo

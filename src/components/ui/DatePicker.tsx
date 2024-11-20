@@ -1,8 +1,7 @@
 "use client";
 
-import { addDays, format } from "date-fns";
+import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import * as React from "react";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -17,14 +16,11 @@ import { ScrollArea } from "./scroll-area";
 
 type DatePickerProps = {
   placeholder?: string;
+  onSelect?: (date: DateRange | undefined) => void;
+  date: DateRange | undefined;
 };
 
-export function DatePicker({ placeholder }: DatePickerProps) {
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
-  });
-
+export function DatePicker({ placeholder, onSelect, date }: DatePickerProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -58,7 +54,7 @@ export function DatePicker({ placeholder }: DatePickerProps) {
             mode="range"
             defaultMonth={date?.from}
             selected={date}
-            onSelect={setDate}
+            onSelect={onSelect}
             numberOfMonths={2}
           />
         </ScrollArea>
