@@ -17,7 +17,6 @@ export type documentsQueryFilters = {
 };
 
 type UseDocumentsProps = {
-  initialFilters?: documentsQueryFilters;
   initialPage?: number;
 };
 
@@ -30,10 +29,7 @@ export const initialFiltersData: documentsQueryFilters = {
   emitter: "",
 };
 
-export const useDocumentsQuery = ({
-  initialFilters = {},
-  initialPage = 1,
-}: UseDocumentsProps) => {
+export const useDocumentsQuery = ({ initialPage = 1 }: UseDocumentsProps) => {
   const [filters, setFilters] = useState<documentsQueryFilters>({});
   const [page, setPage] = useState<number>(initialPage);
 
