@@ -52,10 +52,6 @@ export const FilterSheet = ({ onApplyFilters }: FilterSheetProps) => {
     emitter: "",
   });
 
-  const aplyFilters = () => {
-    onApplyFilters?.(filters);
-    toast.success("Filtros aplicados com sucesso!");
-  };
 
   const clearFilters = () => {
     onApplyFilters?.({
@@ -84,6 +80,13 @@ export const FilterSheet = ({ onApplyFilters }: FilterSheetProps) => {
     }));
     setHasFilters(true);
   }, []);
+
+  const aplyFilters = () => {
+    onApplyFilters?.(filters);
+    setHasFilters(true);
+    toast.success("Filtros aplicados com sucesso!");
+  };
+
 
   return (
     <Sheet>

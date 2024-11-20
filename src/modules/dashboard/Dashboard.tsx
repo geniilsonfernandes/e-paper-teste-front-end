@@ -15,7 +15,7 @@ import { Plus, Search } from "lucide-react";
 import { useState } from "react";
 
 export const Dashboard = () => {
-  const { data, isLoading, updateFilters, filters } = useDocumentsQuery({});
+  const { data, updateFilters, filters } = useDocumentsQuery({});
 
   const mock = tsr.get.useQuery({
     queryKey: ["DOCUMENTS"],
