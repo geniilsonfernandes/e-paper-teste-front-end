@@ -1,5 +1,20 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { DocumentType } from "@/shared/types";
+import {
+  calculateTotal,
+  filtersEmitters,
+  formatDate,
+  formatValue,
+} from "@/shared/utils";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -18,33 +33,26 @@ import {
   Trash,
   View,
 } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Document } from "@/shared/types";
-import { calculateTotal, filtersEmitters, formatValue } from "@/shared/utils";
 import { useMemo, useState } from "react";
 import { DataTable } from "../ui/DataTable";
 
 // utils
 
 type DataTableDocumentsProps = {
-  data: Document[];
+  data?: DocumentType[];
+  isLoading?: boolean;
 };
 
-export const DataTableDocuments = ({ data }: DataTableDocumentsProps) => {
+export const DataTableDocuments = ({
+  data = [],
+  isLoading,
+}: DataTableDocumentsProps) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
 
-  const columns: ColumnDef<Document>[] = useMemo(
+  const columns: ColumnDef<DocumentType>[] = useMemo(
     () => [
       {
         id: "select",
@@ -206,6 +214,9 @@ export const DataTableDocuments = ({ data }: DataTableDocumentsProps) => {
 
       {
         accessorKey: "createdAt",
+        cell: ({ row }) => {
+          return <span>{formatDate(row.getValue("createdAt"))}</span>;
+        },
         header: ({ column }) => {
           return (
             <Button
@@ -224,6 +235,9 @@ export const DataTableDocuments = ({ data }: DataTableDocumentsProps) => {
 
       {
         accessorKey: "updatedAt",
+        cell: ({ row }) => {
+          return <span>{formatDate(row.getValue("updatedAt"))}</span>;
+        },
         header: ({ column }) => {
           return (
             <Button
@@ -287,5 +301,5 @@ export const DataTableDocuments = ({ data }: DataTableDocumentsProps) => {
     },
   });
 
-  return <DataTable table={table} />;
+  return <DataTable table={table} isLoading={isLoading} />;
 };

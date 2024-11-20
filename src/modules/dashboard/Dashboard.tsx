@@ -8,16 +8,26 @@ import { Button, LeadingIcon } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/Combobox";
 import { Input } from "@/components/ui/input";
 import { docOrigin, doctypes } from "@/shared/contants/comboxes";
-import { documentsMock } from "@/shared/tests/mocks";
+import { useDocumentsQuery } from "@/shared/endpoint/document/useDocumentsQuery";
+import { useDebounce } from "@/shared/hook/useDebounce";
 import { Plus, Search } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export const Dashboard = () => {
-  const handleSelect = (value: string) => {
-    console.log("Selected value:", value);
-  };
+  const { data, isLoading, updateFilters, filters } = useDocumentsQuery({});
+
+  const [searchTerm, setSearchTerm] = useState(
+    filters.documentName || undefined
+  );
+
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+  useEffect(() => {
+    updateFilters({ documentName: debouncedSearchTerm });
+  }, [debouncedSearchTerm, updateFilters]);
 
   return (
-    <div className="py-4">
+    <div className="py-4 min-h-[calc(100vh-112px)]">
       <PageHeader
         title="Dashboard"
         subtitle="Visualize e gerencie seus documentos"
@@ -27,8 +37,10 @@ export const Dashboard = () => {
               placeholder="Buscar documentos"
               className="w-full md:max-w-[330px]"
               icon={<Search />}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <FilterSheet />
+            <FilterSheet onApplyFilters={updateFilters} />
           </div>
         }
       />
@@ -39,14 +51,14 @@ export const Dashboard = () => {
             placeholder="escolha uma origem..."
             label="Origem do documento"
             tooltip="Escolha a origem do documento"
-            onSelect={handleSelect}
+            onSelect={(value) => updateFilters({ docOrigin: value })}
           />
           <Combobox
             options={doctypes}
             label="Tipo documental"
             tooltip="Escolha o tipo documental"
             placeholder="escolha um tipo..."
-            onSelect={handleSelect}
+            onSelect={(value) => updateFilters({ docType: value })}
           />
         </div>
         <CreateDocumentDialog>
@@ -58,7 +70,14 @@ export const Dashboard = () => {
           </Button>
         </CreateDocumentDialog>
       </div>
-      <DataTableDocuments data={documentsMock} />
+
+      <DataTableDocuments
+        data={data?.body?.data}
+
+        // manualPagination
+        // pagination={pagination}
+      />
+
       <CreateDocumentDialog>
         <Button className="md:hidden fixed bottom-32 right-8 w-14 h-14 rounded-full">
           <Plus />

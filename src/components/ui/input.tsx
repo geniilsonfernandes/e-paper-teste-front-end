@@ -22,8 +22,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className,
             "placeholder:text-sm w-full"
           )}
-          ref={ref}
           {...props}
+          ref={ref}
         />
         {icon && <span>{icon}</span>}
       </div>

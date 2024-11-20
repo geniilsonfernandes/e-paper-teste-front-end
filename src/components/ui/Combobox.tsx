@@ -36,6 +36,8 @@ interface ComboboxProps {
   label?: string;
   tooltip?: string;
   onSelect?: (value: string) => void;
+
+  value?: string;
 }
 
 export const Combobox = ({
@@ -44,13 +46,12 @@ export const Combobox = ({
   onSelect,
   tooltip,
   label,
+  value,
 }: ComboboxProps) => {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
 
   const handleSelect = (currentValue: string) => {
     const newValue = currentValue === value ? "" : currentValue;
-    setValue(newValue);
     onSelect?.(newValue);
     setOpen(false);
   };
