@@ -30,9 +30,6 @@ const handler = createNextHandler(
 
       const skip = (currentPage - 1) * size;
 
-      console.log("initialDate", initialDate);
-      console.log("finalDate", finalDate);
-
       const totalDocuments = await prisma.document.count();
 
       const documents = await prisma.document.findMany({
@@ -93,3 +90,4 @@ export {
   handler as POST,
   handler as PUT,
 };
+

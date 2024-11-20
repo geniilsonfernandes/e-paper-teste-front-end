@@ -9,22 +9,29 @@ import { Combobox } from "@/components/ui/Combobox";
 import { Input } from "@/components/ui/input";
 import { docOrigin, doctypes } from "@/shared/contants/comboxes";
 import { useDocumentsQuery } from "@/shared/endpoint/document/useDocumentsQuery";
-import { useDebounce } from "@/shared/hook/useDebounce";
+import { useDebouncedCallback } from "@/shared/hook/useDebouncedCallback";
+import { tsr } from "@/shared/utils";
 import { Plus, Search } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const Dashboard = () => {
   const { data, isLoading, updateFilters, filters } = useDocumentsQuery({});
 
-  const [searchTerm, setSearchTerm] = useState(
-    filters.documentName || undefined
-  );
+  const mock = tsr.get.useQuery({
+    queryKey: ["DOCUMENTS"],
+  });
+  console.log(mock.data?.body.data);
 
-  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    updateFilters({ documentName: debouncedSearchTerm });
-  }, [debouncedSearchTerm, updateFilters]);
+  const handleSearch = useDebouncedCallback((value: string) => {
+    updateFilters({ documentName: value });
+  }, 500);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.currentTarget.value);
+    handleSearch(event.currentTarget.value);
+  };
 
   return (
     <div className="py-4 min-h-[calc(100vh-112px)]">
@@ -38,7 +45,7 @@ export const Dashboard = () => {
               className="w-full md:max-w-[330px]"
               icon={<Search />}
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={handleChange}
             />
             <FilterSheet onApplyFilters={updateFilters} />
           </div>
@@ -52,6 +59,7 @@ export const Dashboard = () => {
             label="Origem do documento"
             tooltip="Escolha a origem do documento"
             onSelect={(value) => updateFilters({ docOrigin: value })}
+            value={filters.docOrigin}
           />
           <Combobox
             options={doctypes}
@@ -59,6 +67,7 @@ export const Dashboard = () => {
             tooltip="Escolha o tipo documental"
             placeholder="escolha um tipo..."
             onSelect={(value) => updateFilters({ docType: value })}
+            value={filters.docType}
           />
         </div>
         <CreateDocumentDialog>
@@ -73,7 +82,7 @@ export const Dashboard = () => {
 
       <DataTableDocuments
         data={data?.body?.data}
-
+        // isLoading={isLoading}
         // manualPagination
         // pagination={pagination}
       />
