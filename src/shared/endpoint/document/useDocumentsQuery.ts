@@ -38,13 +38,13 @@ export const useDocumentsQuery = ({
   const [page, setPage] = useState<number>(initialPage);
 
   const { data, isLoading } = tsr.get.useQuery({
-    queryKey: [CACHE_KEY_DOCUMENTS, JSON.stringify(filters)],
+    queryKey: ["DOCUMENTS", JSON.stringify(filters)],
 
     queryData: {
       query: {
         docType: filters.docType,
         docOrigin: filters.docOrigin,
-        documentName: filters.documentName,
+        ...(filters.documentName && { documentName: filters.documentName }),
         amount: filters.amount,
         liquidValue: filters.liquidValue,
         emitter: filters.emitter,
@@ -66,8 +66,6 @@ export const useDocumentsQuery = ({
   const goToPage = (newPage: number) => {
     setPage(newPage);
   };
-
-  console.log(data);
 
   return {
     data,

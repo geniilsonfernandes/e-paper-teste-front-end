@@ -6,15 +6,16 @@ import {
 
 import { Dashboard } from "@/modules/dashboard/Dashboard";
 
-import { CACHE_KEY_DOCUMENTS } from "@/shared/endpoint/document/useDocumentsQuery";
 import { tsr } from "@/shared/utils/tsr";
 
 export default async function Home() {
   const tsrQueryClient = tsr.initQueryClient(new QueryClient());
 
   await tsrQueryClient.get.prefetchQuery({
-    queryKey: [CACHE_KEY_DOCUMENTS, JSON.stringify({})],
+    queryKey: ["DOCUMENTS", JSON.stringify({})],
   });
+
+  console.log(tsrQueryClient);
 
   return (
     <HydrationBoundary state={dehydrate(tsrQueryClient)}>

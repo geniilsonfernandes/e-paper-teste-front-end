@@ -60,14 +60,18 @@ export const DataTable = ({ table, isLoading }: DataTableProps) => {
                 </TableRow>
               ))
             ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={table.getAllColumns().length}
-                  className="h-24 text-center"
-                >
-                  {isLoading ? "Carregando..." : "Nenhum registro encontrado."}
-                </TableCell>
-              </TableRow>
+              <>
+                <TableRow>
+                  <TableCell
+                    colSpan={table.getAllColumns().length}
+                    className="h-24 text-center"
+                  >
+                    {isLoading
+                      ? "Carregando..."
+                      : "Nenhum registro encontrado."}
+                  </TableCell>
+                </TableRow>
+              </>
             )}
           </TableBody>
           <TableFooter>
