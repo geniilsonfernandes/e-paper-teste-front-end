@@ -79,13 +79,14 @@ export const Dashboard = () => {
           </Button>
         </CreateDocumentDialog>
       </div>
-
-      <DataTableDocuments
-        data={data?.body?.data}
-        // isLoading={isLoading}
-        // manualPagination
-        // pagination={pagination}
-      />
+      {data?.body?.data && (
+        <DataTableDocuments
+          data={data?.body?.data}
+          // isLoading={isLoading}
+          // manualPagination
+          // pagination={pagination}
+        />
+      )}
 
       <CreateDocumentDialog>
         <Button className="md:hidden fixed bottom-32 right-8 w-14 h-14 rounded-full">

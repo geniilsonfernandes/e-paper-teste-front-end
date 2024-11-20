@@ -62,7 +62,14 @@ export const FilterSheet = ({ onApplyFilters }: FilterSheetProps) => {
       initialDate: undefined,
       finalDate: undefined,
     });
-    setFilters({});
+    setFilters({
+      docType: undefined,
+      emitter: "",
+      amount: 0,
+      liquidValue: 0,
+      initialDate: undefined,
+      finalDate: undefined,
+    });
     setDate(undefined);
     setHasFilters(false);
     toast.success("Filtros limpos com sucesso!");

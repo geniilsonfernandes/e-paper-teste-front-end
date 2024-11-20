@@ -15,7 +15,7 @@ export default async function Home() {
     queryKey: ["DOCUMENTS", JSON.stringify({})],
   });
 
-  console.log(tsrQueryClient);
+
 
   return (
     <HydrationBoundary state={dehydrate(tsrQueryClient)}>
