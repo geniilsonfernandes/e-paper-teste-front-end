@@ -21,27 +21,136 @@
 </p>
 
 <p align="center">
-  Também utilizei o **Plop.js** para automatizar a criação de componentes e melhorar a produtividade durante o desenvolvimento.
-</p>
+  Também utilizei o Plop.js para automatizar a criação de componentes e melhorar a produtividade durante o desenvolvimento.
 
-<h2 align="center" id="stacks-utilizadas">Stacks utilizadas</h2>
-<p align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=git,ts,postgres,react,tailwind,figma" />
-  </a>
-</p>
 
-<h2 id="instalação-e-execução-local" align="center">Instalação e execução local</h2>
+<h2 align="center" id="recursos-adicionais">Recursos Adicionais</h2>
 
-<p>
-  Para instalar e executar o aplicativo localmente, siga as instruções abaixo:
-</p>
+## Upload de Documentos com Cloudinary
+
+O projeto implementa upload de documentos utilizando a plataforma Cloudinary, oferecendo:
+
+- Gerenciamento de mídia na nuvem
+
+## Prima 
+
+O projeto utiliza a biblioteca [Prisma](https://www.prisma.io/) para gerenciar as tabelas do banco de dados.
 
 ```
-npm i
-npm run dev
+model Document {
+  id           String    @id @default(uuid())
+  code         String    @unique
+  docType      String
+  docOrigin    String
+  documentName String
+  emitter      String
+  amount       Float
+  liquidValue  Float
+  url          String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
 ```
 
-<p>
-  Após a execução, o aplicativo estará disponível em <a href="http://localhost:3000/">http://localhost:3000/</a>
-</p>
+## Endpoints da API - TS-REST
+
+#### Criação de Documento
+
+```typescript
+// src/shared/contracts
+// api/document - POST
+
+type createDocument {
+  docType: string;
+  docOrigin: string;
+  documentName: string;
+  url: string; // URL do arquivo no Cloudinary
+}
+```
+
+#### Listagem de Documentos
+
+```typescript
+// src/shared/contracts
+// api/document - GET
+type query = {
+  page: number;
+  initialDate: string;
+  finalDate: string;
+  docType: string;
+  docOrigin: string;
+  emitter: string;
+  amount: number;
+  liquidValue: number;
+  documentName: string;
+};
+
+type response = {
+  id: string;
+  code: string;
+  docType: string;
+  docOrigin: string;
+  docType: string;
+  docOrigin: string;
+  documentName: string;
+  emitter: string;
+  amount: number;
+  liquidValue: number;
+  createdAt: string;
+  updatedAt: string;
+  url: string;
+};
+```
+
+Foi usando o [TS-REST](https://github.com/ts-rest/ts-rest) para criar os endpoints da API e o [Zod](https://github.com/colinhacks/zod) para validação dos dados da requisição.
+
+### Client Side
+
+foi usado [React Query](https://react-query.tanstack.com/) para a listagem de documentos e para mutações.
+
+---
+
+### Configuração do Cloudinary
+
+Adicione as seguintes variáveis de ambiente:
+
+```
+CLOUDINARY_CLOUD_NAME=seu_cloud_name
+CLOUDINARY_API_KEY=sua_api_key
+CLOUDINARY_API_SECRET=seu_api_secret
+```
+
+### Exemplo de Upload
+
+```typescript
+// src/modules/dashboard/hooks/useDocumentUpload.ts
+import { v2 as cloudinary } from "cloudinary";
+
+const uploadDocument = async (
+  values: UploadDocumentProps,
+  onProgress: (progress: number) => void
+) => {
+  const formData = new FormData();
+  formData.append("file", values.file);
+  formData.append("upload_preset", "ml_default");
+
+  return await axios.post<CloudinaryFile>(
+    `https://api.cloudinary.com/v1_1/dbpayojb3/image/upload`,
+    formData,
+    {
+      onUploadProgress: (event) => {
+        if (event.total) {
+          const progress = Math.round((100 * event.loaded) / event.total);
+          onProgress(progress);
+        }
+      },
+    }
+  );
+};
+```
+
+### Considerações Adicionais
+
+- Implementar validações de upload
+- Gerenciar tamanho máximo de arquivo
+- Definir tipos de arquivo permitidos
