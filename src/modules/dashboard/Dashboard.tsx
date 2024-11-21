@@ -10,17 +10,11 @@ import { Input } from "@/components/ui/input";
 import { docOrigin, doctypes } from "@/shared/contants/comboxes";
 import { useDocumentsQuery } from "@/shared/endpoint/document/useDocumentsQuery";
 import { useDebouncedCallback } from "@/shared/hook/useDebouncedCallback";
-import { tsr } from "@/shared/utils";
 import { Plus, Search } from "lucide-react";
 import { useState } from "react";
 
 export const Dashboard = () => {
-  const { data, updateFilters, filters } = useDocumentsQuery({});
-
-  const mock = tsr.getDocuments.useQuery({
-    queryKey: ["DOCUMENTS"],
-  });
-  console.log(mock.data?.body.data);
+  const { data, updateFilters, filters, isLoading } = useDocumentsQuery({});
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -79,14 +73,13 @@ export const Dashboard = () => {
           </Button>
         </CreateDocumentDialog>
       </div>
-      {data?.body?.data && (
-        <DataTableDocuments
-          data={data?.body?.data}
-          // isLoading={isLoading}
-          // manualPagination
-          // pagination={pagination}
-        />
-      )}
+
+      <DataTableDocuments
+        data={data?.body?.data}
+        isLoading={isLoading}
+        // manualPagination
+        // pagination={pagination}
+      />
 
       <CreateDocumentDialog>
         <Button className="md:hidden fixed bottom-32 right-8 w-14 h-14 rounded-full">

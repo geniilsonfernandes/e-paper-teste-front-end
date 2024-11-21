@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Sidebar } from "@/components/Sidebar";
 import React from "react";
@@ -11,7 +12,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
       <div className="flex relative">
         <Sidebar className="app-sidebar" menuList={[{ title: "Documentos" }]} />
         <div className="app-content">{children}</div>
-        <footer className="app-footer">...</footer>
+        <Footer />
       </div>
     </main>
   );

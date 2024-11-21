@@ -50,6 +50,7 @@ export const useDocumentsQuery = ({ initialPage = 1 }: UseDocumentsProps) => {
     },
 
     placeholderData: (previousData) => previousData,
+
   });
 
   const updateFilters = useCallback(
