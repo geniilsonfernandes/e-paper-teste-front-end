@@ -20,7 +20,7 @@ export const documentContract = c.router({
         liquidValue: z.number(),
         documentName: z.string(),
       })
-      .partial(), // Torna todos os campos opcionais
+      .partial(),
     responses: {
       200: z.object({
         message: z.string(),
@@ -34,30 +34,17 @@ export const documentContract = c.router({
   },
 });
 
-type Post = {
-  id: number;
-  title: string;
-  body: string;
-  userId: number;
-};
-
-export const postContract = c.router({
-  getPosts: {
+const healthContract = c.router({
+  check: {
     method: "GET",
-    path: "/posts",
+    path: "/health",
     responses: {
-      200: c.type<{ posts: Post[]; total: number }>(),
+      200: z.object({ message: z.string() }),
     },
-    query: z.object({
-      take: z.string().transform(Number).optional(),
-      skip: z.string().transform(Number).optional(),
-      search: z.string().optional(),
-    }),
-    summary: "Get all posts",
   },
 });
 
 export const contract = c.router({
-  posts: postContract,
+  health: healthContract,
   documents: documentContract,
 });

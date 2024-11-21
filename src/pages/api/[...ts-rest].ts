@@ -1,28 +1,6 @@
 import { contract } from "@/shared/contracts";
 import prisma from "@/shared/db";
-
 import { createNextRoute, createNextRouter } from "@ts-rest/next";
-
-const postsRouter = createNextRoute(contract.posts, {
-  getPosts: async ({ query }) => {
-    console.log(query);
-
-    return {
-      status: 200,
-      body: {
-        posts: [
-          {
-            body: "",
-            id: 1,
-            title: "title",
-            userId: 1,
-          },
-        ],
-        total: 1,
-      },
-    };
-  },
-});
 
 const documentsRouter = createNextRoute(contract.documents, {
   getDocuments: async (args) => {
@@ -37,7 +15,7 @@ const documentsRouter = createNextRoute(contract.documents, {
         amount,
         emitter,
         liquidValue,
-      }, // Parâmetros da query com valores padrão
+      },
     } = args;
 
     const invertDate = (date: string) => {
@@ -47,9 +25,7 @@ const documentsRouter = createNextRoute(contract.documents, {
 
     const currentPage = page;
     const size = 100;
-
     const skip = (currentPage - 1) * size;
-
     const totalDocuments = await prisma.document.count();
 
     const documents = await prisma.document.findMany({
@@ -74,7 +50,6 @@ const documentsRouter = createNextRoute(contract.documents, {
       },
     });
 
-    // Formatar os documentos
     const formattedDocuments = documents.map((doc) => ({
       ...doc,
       createdAt: doc.createdAt.toISOString(),
@@ -87,7 +62,7 @@ const documentsRouter = createNextRoute(contract.documents, {
         message: "Documents fetched successfully",
         data: formattedDocuments,
         total: totalDocuments,
-        totalPages: Math.ceil(totalDocuments / size), // Calcula o total de páginas
+        totalPages: Math.ceil(totalDocuments / size),
         currentPage,
         pageSize: size,
       },
@@ -95,19 +70,19 @@ const documentsRouter = createNextRoute(contract.documents, {
   },
 });
 
-// const healthRouter = createNextRoute(apiNested.health, {
-//   check: async (args) => {
-//     return {
-//       status: 200,
-//       body: { message: "OK" },
-//     };
-//   },
-// });
+const healthRouter = createNextRoute(contract.health, {
+  check: async (args) => {
+    return {
+      status: 200,
+      body: { message: "OK" },
+    };
+  },
+});
 
 const router = createNextRoute(contract, {
-  posts: postsRouter,
+  health: healthRouter,
   documents: documentsRouter,
-  // health: healthRouter,
 });
+
 
 export default createNextRouter(contract, router);

@@ -33,7 +33,7 @@ export const useDocumentsQuery = ({ initialPage = 1 }: UseDocumentsProps) => {
   const [filters, setFilters] = useState<documentsQueryFilters>({});
   const [page, setPage] = useState<number>(initialPage);
 
-  const { data, isLoading } = tsr.getDocuments.useQuery({
+  const { data, isLoading, refetch } = tsr.getDocuments.useQuery({
     queryKey: ["DOCUMENTS", JSON.stringify(filters)],
 
     queryData: {
@@ -50,7 +50,6 @@ export const useDocumentsQuery = ({ initialPage = 1 }: UseDocumentsProps) => {
     },
 
     placeholderData: (previousData) => previousData,
-
   });
 
   const updateFilters = useCallback(
@@ -71,5 +70,6 @@ export const useDocumentsQuery = ({ initialPage = 1 }: UseDocumentsProps) => {
     page,
     updateFilters,
     goToPage,
+    refetch,
   };
 };

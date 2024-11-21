@@ -14,7 +14,8 @@ import { Plus, Search } from "lucide-react";
 import { useState } from "react";
 
 export const Dashboard = () => {
-  const { data, updateFilters, filters, isLoading } = useDocumentsQuery({});
+  const { data, updateFilters, filters, isLoading, refetch } =
+    useDocumentsQuery({});
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -64,7 +65,7 @@ export const Dashboard = () => {
             value={filters.docType}
           />
         </div>
-        <CreateDocumentDialog>
+        <CreateDocumentDialog refetchList={refetch}>
           <Button variant="default" className="hidden md:flex">
             <LeadingIcon>
               <Plus className="mr-2" />
@@ -77,11 +78,12 @@ export const Dashboard = () => {
       <DataTableDocuments
         data={data?.body?.data}
         isLoading={isLoading}
+
         // manualPagination
         // pagination={pagination}
       />
 
-      <CreateDocumentDialog>
+      <CreateDocumentDialog refetchList={refetch}>
         <Button className="md:hidden fixed bottom-32 right-8 w-14 h-14 rounded-full">
           <Plus />
         </Button>

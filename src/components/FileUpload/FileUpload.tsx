@@ -9,13 +9,18 @@ const convertBytesToMB = (bytes: number) => {
   return (bytes / (1024 * 1024)).toFixed(2) + " MB";
 };
 
-const FileUpload = () => {
+type FileUploadProps = {
+  onFileUpload?: (file: File) => void;
+};
+
+const FileUpload = ({ onFileUpload }: FileUploadProps) => {
   const acceptedFileTypes = ["image/jpeg", "image/png", "image/gif"];
 
   const [files, setFiles] = useState<File>();
   const [openPreview, setOpenPreview] = useState(false);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
+    onFileUpload?.(acceptedFiles[0]);
     setFiles(acceptedFiles[0]);
   }, []);
 

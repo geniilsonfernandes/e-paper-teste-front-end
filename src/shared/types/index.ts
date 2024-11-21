@@ -1,4 +1,9 @@
+import { NextApiRequest } from "next";
 import { z } from "zod";
+
+export interface MulterRequest extends NextApiRequest {
+  file?: any;
+}
 
 export const docTypes = z.enum([
   "payment",
