@@ -10,7 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/utils";
 import { DateRange } from "react-day-picker";
 import { ScrollArea } from "./scroll-area";
 

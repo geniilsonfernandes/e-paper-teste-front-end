@@ -1,8 +1,8 @@
-import { cn } from "@/lib/utils";
 import { useDocumentCreate } from "@/modules/dashboard/hooks/useDocumentCreate";
 import { useDocumentUpload } from "@/modules/dashboard/hooks/useDocumentUpload";
 import { docOrigin, doctypes } from "@/shared/contants/comboxes";
 import { CloudinaryFile } from "@/shared/types";
+import { cn } from "@/shared/utils";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
