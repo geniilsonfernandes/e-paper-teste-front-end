@@ -16,8 +16,8 @@ export const documentContract = c.router({
         docType: z.string(),
         docOrigin: z.string(),
         emitter: z.string(),
-        amount: z.number(),
-        liquidValue: z.number(),
+        amount: z.string(),
+        liquidValue: z.string(),
         documentName: z.string(),
       })
       .partial(),

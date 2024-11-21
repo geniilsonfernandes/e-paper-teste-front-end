@@ -63,8 +63,8 @@ export const FilterSheet = ({ onApplyFilters }: FilterSheetProps) => {
     setFilters({
       docType: undefined,
       emitter: "",
-      amount: 0,
-      liquidValue: 0,
+      amount: undefined,
+      liquidValue: undefined,
       initialDate: undefined,
       finalDate: undefined,
     });
@@ -87,7 +87,14 @@ export const FilterSheet = ({ onApplyFilters }: FilterSheetProps) => {
   }, []);
 
   const aplyFilters = () => {
-    onApplyFilters?.(filters);
+    onApplyFilters?.({
+      docType: filters.docType,
+      emitter: filters.emitter,
+      amount: filters.amount?.toString(),
+      liquidValue: filters.liquidValue?.toString(),
+      initialDate: filters.initialDate,
+      finalDate: filters.finalDate,
+    });
     setHasFilters(true);
     toast.success("Filtros aplicados com sucesso!");
   };
@@ -184,7 +191,9 @@ export const FilterSheet = ({ onApplyFilters }: FilterSheetProps) => {
               Limpar filtros
             </Button>
           </SheetClose>
-          <Button onClick={aplyFilters}>Aplicar filtro</Button>
+          <SheetClose asChild>
+            <Button onClick={aplyFilters}>Aplicar filtro</Button>
+          </SheetClose>
         </SheetFooter>
       </SheetContent>
     </Sheet>

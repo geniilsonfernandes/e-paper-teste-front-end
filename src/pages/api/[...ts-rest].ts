@@ -17,6 +17,17 @@ const documentsRouter = createNextRoute(contract.documents, {
         liquidValue,
       },
     } = args;
+    console.log({
+      page,
+      docType,
+      docOrigin,
+      documentName,
+      finalDate,
+      initialDate,
+      amount,
+      emitter,
+      liquidValue,
+    });
 
     const invertDate = (date: string) => {
       const [day, month, year] = date.split("/");
@@ -36,7 +47,7 @@ const documentsRouter = createNextRoute(contract.documents, {
         ...(docType && { docType: { contains: docType } }),
         ...(docOrigin && { docOrigin: { contains: docOrigin } }),
         ...(documentName && { documentName: { contains: documentName } }),
-        ...(emitter && { emitter: { contains: emitter } }),
+        ...(emitter && { emitter: { contains: emitter, mode: "insensitive" } }),
         ...(amount && { amount: { equals: parseInt(amount.toString()) } }),
         ...(liquidValue && {
           liquidValue: { equals: parseInt(liquidValue.toString()) },

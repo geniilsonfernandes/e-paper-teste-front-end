@@ -12,6 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/shared/utils";
 
 type DataTableProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,7 +22,11 @@ type DataTableProps = {
 
 export const DataTable = ({ table, isLoading }: DataTableProps) => {
   return (
-    <div className="w-full">
+    <div
+      className={cn("w-full relative", {
+        "pointer-events-none opacity-60": isLoading,
+      })}
+    >
       <div className="rounded-md border">
         <Table>
           <TableHeader>

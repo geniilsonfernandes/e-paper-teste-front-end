@@ -9,8 +9,8 @@ export type documentsQueryFilters = {
   docType?: string;
   docOrigin?: string;
   documentName?: string;
-  amount?: number;
-  liquidValue?: number;
+  amount?: string;
+  liquidValue?: string;
   emitter?: string;
   initialDate?: string;
   finalDate?: string;
@@ -24,8 +24,8 @@ export const initialFiltersData: documentsQueryFilters = {
   docType: "",
   docOrigin: "",
   documentName: "",
-  amount: 0,
-  liquidValue: 0,
+  amount: "",
+  liquidValue: "",
   emitter: "",
 };
 
@@ -39,13 +39,15 @@ export const useDocumentsQuery = ({ initialPage = 1 }: UseDocumentsProps) => {
     queryData: {
       query: {
         docType: filters.docType,
-        docOrigin: filters.docOrigin,
+        ...(filters.docOrigin && { docOrigin: filters.docOrigin }),
         ...(filters.documentName && { documentName: filters.documentName }),
-        amount: filters.amount,
-        liquidValue: filters.liquidValue,
-        emitter: filters.emitter,
-        initialDate: filters.initialDate,
-        finalDate: filters.finalDate,
+        ...(filters.amount && { amount: filters.amount.toString() }),
+        ...(filters.liquidValue && {
+          liquidValue: filters.liquidValue.toString(),
+        }),
+        ...(filters.emitter && { emitter: filters.emitter }),
+        ...(filters.initialDate && { initialDate: filters.initialDate }),
+        ...(filters.finalDate && { finalDate: filters.finalDate }),
       },
     },
 
