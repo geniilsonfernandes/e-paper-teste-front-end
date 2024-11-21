@@ -1,3 +1,4 @@
+import { CloudinaryFile } from "@/shared/types";
 import { Upload } from "lucide-react";
 import { useCallback, useState } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
@@ -11,11 +12,18 @@ const convertBytesToMB = (bytes: number) => {
 
 type FileUploadProps = {
   onFileUpload?: (file: File) => void;
+  isPending?: boolean;
+  upLoadProgress?: number;
+  onRemove?: () => void;
+  fileUpload?: CloudinaryFile;
 };
 
-const FileUpload = ({ onFileUpload }: FileUploadProps) => {
-  const acceptedFileTypes = ["image/jpeg", "image/png", "image/gif"];
-
+const FileUpload = ({
+  onFileUpload,
+  fileUpload,
+  upLoadProgress,
+  onRemove,
+}: FileUploadProps) => {
   const [files, setFiles] = useState<File>();
   const [openPreview, setOpenPreview] = useState(false);
 
@@ -30,7 +38,7 @@ const FileUpload = ({ onFileUpload }: FileUploadProps) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      "image/*": acceptedFileTypes,
+      "image/*": [".jpg", ".jpeg", ".png", ".gif"],
     },
     maxSize: 10 * 1024 * 1024,
     onDropRejected: (fileRejections: FileRejection[]) => {
@@ -45,14 +53,13 @@ const FileUpload = ({ onFileUpload }: FileUploadProps) => {
           "Você enviou muitos arquivos. Envie apenas um arquivo por vez.",
       };
 
-      // Processa cada arquivo rejeitado
       fileRejections.forEach((rejection) => {
         rejection.errors.forEach((error: { code: string }) => {
           const errorMessage =
             errosCode[error.code as keyof typeof errosCode] ||
             "Erro desconhecido ao fazer upload.";
 
-          toast.error(errorMessage); // Exibe a mensagem de erro correspondente
+          toast.error(errorMessage);
         });
       });
     },
@@ -85,15 +92,20 @@ const FileUpload = ({ onFileUpload }: FileUploadProps) => {
       {files && (
         <div className="mt-4">
           <FilePreview
+            fileUpload={fileUpload}
             fileName={files?.name}
             fileSize={convertBytesToMB(files?.size || 0)}
-            progress={50}
-            onRemove={() => setFiles(undefined)}
+            progress={upLoadProgress}
+            onRemove={() => {
+              onRemove?.();
+              setFiles(undefined);
+            }}
             onPreview={() => setOpenPreview(true)}
           />
         </div>
       )}
       <PreviewDialog
+        fileUpload={fileUpload}
         isOpen={openPreview}
         fileName={files?.name || ""}
         totalPages={1}

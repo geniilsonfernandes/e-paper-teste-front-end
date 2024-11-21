@@ -68,6 +68,32 @@ const documentsRouter = createNextRoute(contract.documents, {
       },
     };
   },
+  createDocument: async (args) => {
+    const {
+      body: { docType, docOrigin, documentName, url },
+    } = args;
+
+    const document = await prisma.document.create({
+      data: {
+        docType,
+        docOrigin,
+        url,
+        amount: Math.floor(Math.random() * 1000),
+        code: Math.random().toString(36).substring(2),
+        documentName: documentName,
+        emitter: "E-paper A",
+        liquidValue: Math.floor(Math.random() * 1000),
+      },
+    });
+
+    return {
+      status: 201,
+      body: {
+        message: "Document created successfully",
+        data: document,
+      },
+    };
+  },
 });
 
 const healthRouter = createNextRoute(contract.health, {
@@ -83,6 +109,5 @@ const router = createNextRoute(contract, {
   health: healthRouter,
   documents: documentsRouter,
 });
-
 
 export default createNextRouter(contract, router);

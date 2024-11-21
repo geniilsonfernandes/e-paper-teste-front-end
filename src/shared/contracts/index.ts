@@ -32,6 +32,21 @@ export const documentContract = c.router({
       500: z.object({ error: z.string() }),
     },
   },
+  createDocument: {
+    method: "POST",
+    path: "/document",
+    responses: {
+      200: z.object({ message: z.string() }),
+      404: z.object({ error: z.string() }),
+      500: z.object({ error: z.string() }),
+    },
+    body: z.object({
+      docType: z.string(),
+      docOrigin: z.string(),
+      documentName: z.string(),
+      url: z.string().url(),
+    }),
+  },
 });
 
 const healthContract = c.router({

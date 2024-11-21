@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
+import { documentsQueryFilters } from "@/modules/dashboard/hooks/useDocumentsQuery";
 import { doctypes } from "@/shared/contants/comboxes";
-import { documentsQueryFilters } from "@/shared/endpoint/document/useDocumentsQuery";
 import { formatDate } from "@/shared/utils";
 import { Filter, Info } from "lucide-react";
 import { useCallback, useState } from "react";

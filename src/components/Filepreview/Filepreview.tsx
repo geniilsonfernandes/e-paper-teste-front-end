@@ -1,3 +1,4 @@
+import { CloudinaryFile } from "@/shared/types";
 import { File, X } from "lucide-react";
 import { Button } from "../ui/button";
 import { Progress } from "../ui/progress";
@@ -6,6 +7,7 @@ type FilePreviewProps = {
   fileName?: string;
   fileSize?: string | number;
   progress?: number;
+  fileUpload?: CloudinaryFile;
   onRemove?: () => void;
   onPreview?: () => void;
 };

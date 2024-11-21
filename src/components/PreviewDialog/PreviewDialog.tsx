@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { CloudinaryFile } from "@/shared/types";
 import { ArrowDown, ArrowUp, Download, ZoomIn } from "lucide-react";
 import { useState } from "react";
 
@@ -14,6 +15,7 @@ type PreviewDialogProps = {
   onClose: () => void;
   fileName: string;
   totalPages: number;
+  fileUpload?: CloudinaryFile;
 };
 
 export const PreviewDialog = ({
@@ -21,6 +23,7 @@ export const PreviewDialog = ({
   onClose,
   fileName,
   totalPages,
+  fileUpload,
 }: PreviewDialogProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [zoom, setZoom] = useState(100);
@@ -50,6 +53,7 @@ export const PreviewDialog = ({
         <div
           className="mt-4  shadow-md flex flex-col gap-4 border bg-neutral-100 border-neutral-200 rounded-md"
           aria-label="Visualização"
+          aria-description={`Visualização ${fileUpload?.url}`}
         >
           <div className="p-2 bg-white flex items-center justify-between border-b border-neutral-200">
             <div className="flex items-center gap-2">

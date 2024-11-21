@@ -1,8 +1,10 @@
 import { cn } from "@/lib/utils";
+import { useDocumentCreate } from "@/modules/dashboard/hooks/useDocumentCreate";
+import { useDocumentUpload } from "@/modules/dashboard/hooks/useDocumentUpload";
 import { docOrigin, doctypes } from "@/shared/contants/comboxes";
-import useDocumentMutate from "@/shared/endpoint/document/useDocumentMutate";
+import { CloudinaryFile } from "@/shared/types";
 import { ArrowRight } from "lucide-react";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import FileUpload from "../FileUpload/FileUpload";
 import { Badge } from "../ui/badge";
@@ -29,16 +31,40 @@ export const CreateDocumentDialog = ({
   refetchList,
 }: CreateDocumentDialogProps) => {
   const [open, setOpen] = useState(false);
-  const { mutateAsync, isPending } = useDocumentMutate();
   const [values, setValues] = useState<{
-    file: File;
+    file?: CloudinaryFile;
     docType: string;
     docOrigin: string;
   }>({
-    file: {} as File,
+    file: undefined,
     docType: "",
     docOrigin: "",
   });
+
+  const createMutation = useDocumentCreate(
+    () => {
+      setOpen(false);
+      setValues({
+        file: undefined,
+        docType: "",
+        docOrigin: "",
+      });
+      refetchList?.();
+      toast.success("Documento criado com sucesso.");
+    },
+    () => {
+      toast.error("Erro ao criar documento.");
+    }
+  );
+
+  const uploadMutation = useDocumentUpload(
+    (image) => {
+      setValues((current) => ({ ...current, file: image }));
+    },
+    () => {
+      toast.error("Erro ao fazer upload do documento.");
+    }
+  );
 
   const handleDocOriginChange = (docOrigin: string) => {
     setValues((current) => ({ ...current, docOrigin }));
@@ -47,30 +73,26 @@ export const CreateDocumentDialog = ({
     setValues((current) => ({ ...current, docType }));
   };
 
-  const handleFileChange = useCallback((file: File) => {
-    setValues((current) => ({ ...current, file }));
-  }, []);
+  const handleFileChange = (file: File) => {
+    uploadMutation.mutation.mutate({
+      file,
+    });
+  };
+
+  const handleRemoveFile = () => {
+    setValues((current) => ({ ...current, image: undefined }));
+    uploadMutation.mutation.reset();
+  };
 
   const handleSubmit = async () => {
-    if (!values.docOrigin || !values.docType || !values.file) {
-      toast.error("Preencha todos os campos");
-      return;
-    }
-
-    try {
-      await mutateAsync({
-        docOrigin: values.docOrigin,
+    createMutation.mutate({
+      body: {
         docType: values.docType,
-        file: values.file,
-      });
-      refetchList?.();
-
-      toast.success("Documento criado com sucesso.");
-      setOpen(false);
-    } catch (error) {
-      console.log(error);
-      toast.error("Erro ao criar documento.");
-    }
+        docOrigin: values.docOrigin,
+        documentName: values.file?.original_filename || "",
+        url: values.file?.secure_url || "",
+      },
+    });
   };
 
   return (
@@ -86,7 +108,7 @@ export const CreateDocumentDialog = ({
         <div
           className={cn(
             "space-y-4 w-full",
-            isPending && "pointer-events-none opacity-50"
+            createMutation.isPending && "pointer-events-none opacity-50"
           )}
         >
           <Badge variant="secondary">0000</Badge>
@@ -107,7 +129,13 @@ export const CreateDocumentDialog = ({
               value={values.docType}
               onSelect={handleDocTypeChange}
             />
-            <FileUpload onFileUpload={handleFileChange} />
+            <FileUpload
+              fileUpload={values.file}
+              onFileUpload={handleFileChange}
+              isPending={uploadMutation.isPending}
+              upLoadProgress={uploadMutation.progress}
+              onRemove={handleRemoveFile}
+            />
           </div>
         </div>
         <DialogFooter className="border-t border-neutral-200 pt-4">
@@ -115,7 +143,9 @@ export const CreateDocumentDialog = ({
             <Button variant="outline">Cancelar</Button>
           </DialogClose>
           <Button type="submit" onClick={handleSubmit}>
-            {isPending ? "Enviando documento..." : "Enviar documento"}
+            {createMutation.isPending
+              ? "Enviando documento..."
+              : "Enviar documento"}
             <TrailingIcon>
               <ArrowRight />
             </TrailingIcon>

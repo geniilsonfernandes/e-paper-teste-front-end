@@ -40,7 +40,7 @@ const handler = async (
   req: NextApiRequest & { [key: string]: any },
   res: NextApiResponse
 ): Promise<void> => {
-  const multerUpload = multer({ dest: "uploads/" });
+  const multerUpload = multer({ storage: multer.memoryStorage() });
 
   await runMiddleware(req, res, multerUpload.single("file"));
   const file = req.file;
