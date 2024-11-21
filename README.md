@@ -149,8 +149,20 @@ const uploadDocument = async (
 };
 ```
 
-### Considerações Adicionais
+## Para executar o projeto, basta seguir os passos abaixo:
 
-- Implementar validações de upload
-- Gerenciar tamanho máximo de arquivo
-- Definir tipos de arquivo permitidos
+1. configurar as variáveis de ambiente
+
+
+
+2. Instale as dependências do projeto:
+   ```bash
+   npm install
+   ```
+
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+
+4. Acesse o projeto em http://localhost:3000

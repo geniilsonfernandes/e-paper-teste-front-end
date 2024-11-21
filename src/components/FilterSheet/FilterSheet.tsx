@@ -1,7 +1,6 @@
-import { cn } from "@/lib/utils";
 import { documentsQueryFilters } from "@/modules/dashboard/hooks/useDocumentsQuery";
 import { doctypes } from "@/shared/contants/comboxes";
-import { formatDate } from "@/shared/utils";
+import { cn, formatDate } from "@/shared/utils";
 import { Filter, Info } from "lucide-react";
 import { useCallback, useState } from "react";
 import { DateRange } from "react-day-picker";
@@ -52,7 +51,6 @@ export const FilterSheet = ({ onApplyFilters }: FilterSheetProps) => {
     emitter: "",
   });
 
-
   const clearFilters = () => {
     onApplyFilters?.({
       docType: undefined,
@@ -93,7 +91,6 @@ export const FilterSheet = ({ onApplyFilters }: FilterSheetProps) => {
     setHasFilters(true);
     toast.success("Filtros aplicados com sucesso!");
   };
-
 
   return (
     <Sheet>

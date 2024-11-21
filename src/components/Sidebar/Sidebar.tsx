@@ -1,6 +1,7 @@
 "use client";
-import { cn } from "@/lib/utils";
+
 import { useSidebarStore } from "@/shared/store";
+import { cn } from "@/shared/utils";
 import { cva } from "class-variance-authority";
 import { FileText } from "lucide-react";
 import { ReactNode } from "react";
