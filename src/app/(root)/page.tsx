@@ -11,7 +11,7 @@ import { tsr } from "@/shared/utils/tsr";
 export default async function Home() {
   const tsrQueryClient = tsr.initQueryClient(new QueryClient());
 
-  await tsrQueryClient.get.prefetchQuery({
+  await tsrQueryClient.getDocuments.prefetchQuery({
     queryKey: ["DOCUMENTS", JSON.stringify({})],
   });
 

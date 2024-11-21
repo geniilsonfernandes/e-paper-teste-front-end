@@ -17,7 +17,7 @@ import { useState } from "react";
 export const Dashboard = () => {
   const { data, updateFilters, filters } = useDocumentsQuery({});
 
-  const mock = tsr.get.useQuery({
+  const mock = tsr.getDocuments.useQuery({
     queryKey: ["DOCUMENTS"],
   });
   console.log(mock.data?.body.data);

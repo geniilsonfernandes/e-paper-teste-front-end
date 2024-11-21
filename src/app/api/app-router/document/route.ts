@@ -5,7 +5,7 @@ import { createNextHandler } from "@ts-rest/serverless/next";
 const handler = createNextHandler(
   documentContract,
   {
-    get: async (args) => {
+    getDocuments: async (args) => {
       const {
         query: {
           page = 1,

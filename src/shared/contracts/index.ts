@@ -5,7 +5,7 @@ import { DocumentSchema } from "../types";
 const c = initContract();
 
 export const documentContract = c.router({
-  get: {
+  getDocuments: {
     method: "GET",
     path: "/document",
     query: z
@@ -32,4 +32,32 @@ export const documentContract = c.router({
       500: z.object({ error: z.string() }),
     },
   },
+});
+
+type Post = {
+  id: number;
+  title: string;
+  body: string;
+  userId: number;
+};
+
+export const postContract = c.router({
+  getPosts: {
+    method: "GET",
+    path: "/posts",
+    responses: {
+      200: c.type<{ posts: Post[]; total: number }>(),
+    },
+    query: z.object({
+      take: z.string().transform(Number).optional(),
+      skip: z.string().transform(Number).optional(),
+      search: z.string().optional(),
+    }),
+    summary: "Get all posts",
+  },
+});
+
+export const contract = c.router({
+  posts: postContract,
+  documents: documentContract,
 });

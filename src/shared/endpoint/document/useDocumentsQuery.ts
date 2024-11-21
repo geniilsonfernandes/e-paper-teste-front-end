@@ -33,7 +33,7 @@ export const useDocumentsQuery = ({ initialPage = 1 }: UseDocumentsProps) => {
   const [filters, setFilters] = useState<documentsQueryFilters>({});
   const [page, setPage] = useState<number>(initialPage);
 
-  const { data, isLoading } = tsr.get.useQuery({
+  const { data, isLoading } = tsr.getDocuments.useQuery({
     queryKey: ["DOCUMENTS", JSON.stringify(filters)],
 
     queryData: {
