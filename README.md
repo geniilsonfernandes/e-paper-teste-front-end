@@ -1,8 +1,10 @@
-<p align="center" id="menu">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CVMx3trycY0?si=I9t4fpuCabmI1Km4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-<a  href="https://e-paper-teste-front-end.vercel.app/">LINK PARA O PROJETO</a>
+ ## ePaper | Frontend | ePaper - Gerenciamento de Papéis
+
+[![Watch the video](yt.png)](https://www.youtube.com/embed/CVMx3trycY0?si=I9t4fpuCabmI1Km4)
+
+<a href="https://e-paper-teste-front-end.vercel.app/">LINK PARA O PROJETO</a>
 </p>
 <h2 align="center">ePaper | Frontend</h2>
 
