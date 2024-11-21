@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { docOrigin, doctypes } from "@/shared/contants/comboxes";
 import useDocumentMutate from "@/shared/endpoint/document/useDocumentMutate";
 import { ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { toast } from "sonner";
 import FileUpload from "../FileUpload/FileUpload";
 import { Badge } from "../ui/badge";
@@ -46,9 +46,10 @@ export const CreateDocumentDialog = ({
   const handleDocTypeChange = (docType: string) => {
     setValues((current) => ({ ...current, docType }));
   };
-  const handleFileChange = (file: File) => {
+
+  const handleFileChange = useCallback((file: File) => {
     setValues((current) => ({ ...current, file }));
-  };
+  }, []);
 
   const handleSubmit = async () => {
     if (!values.docOrigin || !values.docType || !values.file) {
@@ -62,7 +63,7 @@ export const CreateDocumentDialog = ({
         docType: values.docType,
         file: values.file,
       });
-      refetchList && refetchList();
+      refetchList?.();
 
       toast.success("Documento criado com sucesso.");
       setOpen(false);

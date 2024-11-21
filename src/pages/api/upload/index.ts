@@ -4,11 +4,15 @@ import multer from "multer";
 import { NextApiRequest, NextApiResponse } from "next";
 
 function runMiddleware(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   req: NextApiRequest & { [key: string]: any },
   res: NextApiResponse,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fn: (...args: any[]) => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> {
   return new Promise((resolve, reject) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     fn(req, res, (result: any) => {
       if (result instanceof Error) {
         return reject(result);
@@ -32,6 +36,7 @@ export const config = {
 };
 
 const handler = async (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   req: NextApiRequest & { [key: string]: any },
   res: NextApiResponse
 ): Promise<void> => {

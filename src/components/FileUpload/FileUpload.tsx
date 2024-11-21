@@ -19,10 +19,13 @@ const FileUpload = ({ onFileUpload }: FileUploadProps) => {
   const [files, setFiles] = useState<File>();
   const [openPreview, setOpenPreview] = useState(false);
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    onFileUpload?.(acceptedFiles[0]);
-    setFiles(acceptedFiles[0]);
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      onFileUpload?.(acceptedFiles[0]);
+      setFiles(acceptedFiles[0]);
+    },
+    [onFileUpload]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,

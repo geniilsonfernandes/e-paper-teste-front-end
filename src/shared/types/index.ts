@@ -2,6 +2,7 @@ import { NextApiRequest } from "next";
 import { z } from "zod";
 
 export interface MulterRequest extends NextApiRequest {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   file?: any;
 }
 

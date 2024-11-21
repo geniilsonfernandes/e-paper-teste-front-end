@@ -71,7 +71,7 @@ const documentsRouter = createNextRoute(contract.documents, {
 });
 
 const healthRouter = createNextRoute(contract.health, {
-  check: async (args) => {
+  check: async () => {
     return {
       status: 200,
       body: { message: "OK" },

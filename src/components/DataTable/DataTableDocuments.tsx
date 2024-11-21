@@ -106,12 +106,15 @@ export const DataTableDocuments = ({
         cell: ({ row }) => {
           return (
             <div className="font-medium flex items-center">
-              <FileText className="mr-2 text-primary-500" />{" "}
-              <div className="flex flex-col ">
+              <FileText className="mr-2 text-primary-500" />
+
+              <div className="flex flex-col" title={row.original.documentName}>
                 <span className="text-neutral-400 text-xs">
                   cód. {row.original.code}
                 </span>
-                <span>{row.getValue("documentName")}</span>
+                <span>
+                  {String(row.original.documentName).substring(0, 8)}...
+                </span>
               </div>
             </div>
           );
